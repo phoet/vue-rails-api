@@ -9,3 +9,8 @@ two:
   name: MyString
   description: MyText
   user: admin
+
+berlin:
+  name: Europe/Berlin
+  description: MyText
+  user: admin
