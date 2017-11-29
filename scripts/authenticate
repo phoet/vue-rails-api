@@ -1,0 +1,13 @@
+#! /usr/bin/env ruby
+
+require 'json'
+
+json = JSON.dump(
+  {
+    email: 'phoetmail@googlemail.com',
+    password: 'xxxxxxxx'
+  }
+)
+
+cmd = "curl -H 'Content-Type: application/json' -X POST -d '#{json}' http://localhost:3000/api/authenticate"
+puts `#{cmd}`

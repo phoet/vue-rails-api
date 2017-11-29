@@ -1,16 +1,16 @@
 module Auth
-  # def call(user_id)
-    # JsonWebToken.encode(user_id: user_id)
+  def auth_token(user_id)
+    Token.encode(user_id: user_id)
+  end
 
-  def login!(email, password)
+  def login(email, password)
     user = User.find_by_email!(email)
-    user.authenticate!(password)
-    user
+    user.authenticate(password)
   end
 
   def authenticate!(headers)
     auth_header = headers['Authorization'].split(' ')
-    token = JsonWebToken.decode(auth_header)
+    token = Token.decode(auth_header)
     User.find!(token[:user_id])
   end
 end

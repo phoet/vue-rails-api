@@ -1,3 +1,7 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  scope :api do
+    post 'authenticate', to: 'authentication#authenticate'
+  end
+
+  root to: -> (env) { [404, {"Content-Type" => "text/html"}, ["please use the /api scope"]] }
 end
