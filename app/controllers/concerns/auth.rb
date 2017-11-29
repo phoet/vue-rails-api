@@ -8,9 +8,8 @@ module Auth
     user.authenticate(password)
   end
 
-  def authenticate!(headers)
-    auth_header = headers['Authorization'].split(' ')
-    token = Token.decode(auth_header)
-    User.find!(token[:user_id])
+  def authenticate(token)
+    payload = Token.decode(token)
+    User.find(payload[:user_id])
   end
 end

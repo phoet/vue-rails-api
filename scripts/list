@@ -1,0 +1,8 @@
+#! /usr/bin/env ruby
+
+require 'json'
+
+bearer = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTIwNDgzMjB9.k8gthKhCGUpuog_6i2j4fUDGMnb2uQmF4O7McZXTsxU'
+
+cmd = "curl -H 'Content-Type: application/json' -H 'Authorization: #{bearer}' -X GET http://localhost:3000/api/time_zones"
+puts `#{cmd}`
