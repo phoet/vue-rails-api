@@ -4,7 +4,7 @@ module Auth
   end
 
   def login(email, password)
-    user = User.find_by_email!(email)
+    return false unless user = User.find_by_email(email)
     user.authenticate(password)
   end
 
