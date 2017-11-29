@@ -6,7 +6,7 @@ class TimeZonesController < ApplicationController
   end
 
   def show
-    time_zone = current_user.find(params[:id])
+    time_zone = current_user.time_zones.find(params[:id])
 
     render json: time_zone
   end
@@ -22,7 +22,7 @@ class TimeZonesController < ApplicationController
   end
 
   def update
-    time_zone = current_user.find(params[:id])
+    time_zone = current_user.time_zones.find(params[:id])
 
     if time_zone.update(time_zone_params)
       render json: time_zone
@@ -32,7 +32,7 @@ class TimeZonesController < ApplicationController
   end
 
   def destroy
-    time_zone = current_user.find(params[:id])
+    time_zone = current_user.time_zones.find(params[:id])
 
     time_zone.destroy
   end
