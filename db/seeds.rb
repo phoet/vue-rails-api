@@ -1,6 +1,6 @@
 
 if User.none?
-  User.create!(email: 'phoetmail@googlemail.com' , password: 'xxxxxxxx' , password_confirmation: 'xxxxxxxx')
+  User.create!(email: 'phoetmail@googlemail.com' , password: 'xxxxxxxx' , password_confirmation: 'xxxxxxxx', role: :admin)
 end
 
 if TimeZone.none?

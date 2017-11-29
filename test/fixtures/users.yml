@@ -14,3 +14,4 @@ admin:
   name: Admin
   email: admin@toptal.com
   password_digest: $2a$10$k6LsBC5xgQ7JgI18PzvxnOinV8FQAqahfEgSlxe0MaEQNQpvQ2RkW # xxxxxxxx
+  role: admin
