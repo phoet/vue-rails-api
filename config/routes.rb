@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   scope :api do
     resources :time_zones
-    resources :users
+    resources :users do
+      resources :time_zones
+    end
 
     post 'authenticate', to: 'authentication#authenticate'
   end

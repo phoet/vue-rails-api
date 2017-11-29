@@ -5,12 +5,19 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
 
   setup do
     @time_zone = time_zones(:one)
+    @user = users(:one)
     @headers = {}
     login(:admin, @headers)
   end
 
   test "should get index" do
     get time_zones_url, headers: @headers, as: :json
+
+    assert_response :success
+  end
+
+  test "should get index for managed user" do
+    get user_time_zones_url(@user), headers: @headers, as: :json
 
     assert_response :success
   end
