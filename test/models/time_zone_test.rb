@@ -16,8 +16,7 @@ class TimeZoneTest < ActiveSupport::TestCase
   end
 
   test "finding by name" do
-    user = users(:admin)
-    london_tz = TimeZone.create!(name: 'Europe/London', user: user)
+    london_tz = time_zones(:london)
     tz = TimeZone.by_name('london').first
 
     assert_equal london_tz, tz

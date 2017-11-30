@@ -4,6 +4,6 @@ if User.none?
 end
 
 if TimeZone.none?
-  name = ActiveSupport::TimeZone.new('Europe/Berlin')
+  name = 'Europe/Berlin'
   TimeZone.create!(description: 'My favorite', name: name, user: User.first)
 end

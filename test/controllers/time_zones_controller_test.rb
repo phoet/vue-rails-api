@@ -23,7 +23,7 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index with filter" do
-    get time_zones_url(name: 'berlin'), headers: @headers, as: :json
+    get time_zones_url(name: 'London'), headers: @headers, as: :json
 
     assert_response :success
     assert_equal 1, JSON.parse(response.body).size

@@ -1,12 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: MyString
+  name: Europe/Berlin
   description: MyText
   user: admin
 
-two:
-  name: MyString
+london:
+  name: Europe/London
   description: MyText
   user: admin
 
