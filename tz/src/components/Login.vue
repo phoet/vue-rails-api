@@ -3,21 +3,21 @@
 
     <h1 @click="toggle = !toggle">Log-In</h1>
     <transition name="fade">
-      <form v-if="toggle">
+      <Form :submit="login" v-if="toggle">
         <input type="email" required name="email" v-model="email" placeholder="E-Mail">
         <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit" @click.prevent="login">Log-in</button>
-      </form>
+        <button type="submit">Log-in</button>
+      </Form>
     </transition>
 
     <h1 @click="toggle = !toggle">Sign-Up</h1>
     <transition name="fade">
-      <form v-if="!toggle">
+      <Form :submit="signup" v-if="!toggle">
         <input type="text" required name="name" v-model="name" placeholder="Name">
         <input type="email" required name="email" v-model="email" placeholder="E-Mail">
         <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit" @click.prevent="signup">Sign-Up</button>
-      </form>
+        <button type="submit">Sign-Up</button>
+      </Form>
     </transition>
 
   </div>
@@ -34,7 +34,18 @@ export default {
     };
   },
   methods: {
-    signup() {
+    async signup() {
+      const data = {
+        name: this.name,
+        email: this.email,
+        password: this.password,
+      };
+
+      const auth = await this.$root.post('signup', data);
+      if (auth) {
+        this.$root.token = auth.auth_token;
+        this.$router.push('/home');
+      }
     },
     async login() {
       const data = {

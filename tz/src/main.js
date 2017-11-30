@@ -17,7 +17,7 @@ new Vue({
   el: '#app',
   router,
   data: {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUGV0ZXIiLCJlbWFpbCI6InBob2V0bWFpbEBnb29nbGVtYWlsLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE3LTExLTI5IDIwOjM3OjMzIFVUQyIsInVwZGF0ZWRfYXQiOiIyMDE3LTExLTMwIDEwOjQ3OjAwIFVUQyIsInJvbGUiOiJhZG1pbiJ9LCJleHAiOjE1MTIxMjU2Mjd9.cA9I9_3WngRg_nup3iG6pGT0X2vIyylSV4huPTgpbvk',
+    token: null,
     errors: [],
     loading: false,
   },
@@ -32,8 +32,20 @@ new Vue({
     isUser() {
       return this.user.role === 'user';
     },
+    isUserManager() {
+      return this.user.role === 'user_manager' || this.user.role === 'admin';
+    },
+    isAdmin() {
+      return this.user.role === 'admin';
+    },
+    loggedIn() {
+      return !!this.token;
+    },
   },
   methods: {
+    logout() {
+      this.token = null;
+    },
     async get(path) {
       return this.request('get', path);
     },

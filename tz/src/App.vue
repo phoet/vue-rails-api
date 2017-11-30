@@ -2,6 +2,7 @@
   <div id="app">
     <Flash />
     <Spinner />
+    <Navigation />
     <router-view/>
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 import Flash from '@/components/Flash';
 import Spinner from '@/components/Spinner';
+import Navigation from '@/components/Navigation';
 
 export default {
   components: {
     Flash,
     Spinner,
+    Navigation,
   },
 };
 </script>

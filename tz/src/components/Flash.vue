@@ -28,10 +28,8 @@ export default {
 </script>
 
 <style scoped>
-ul {
-  display: inline-block;
-}
 li {
+  display: inline-block;
   list-style: none;
 }
 </style>

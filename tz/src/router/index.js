@@ -25,7 +25,7 @@ const router = new Router({
       component: Users,
     },
     {
-      path: '/time_zones',
+      path: '/time-zones',
       name: 'TimeZones',
       component: TimeZones,
     },

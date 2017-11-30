@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
 
     post 'authenticate', to: 'authentication#authenticate'
+    post 'signup', to: 'authentication#signup'
   end
 
   root to: -> (env) { [404, {"Content-Type" => "text/html"}, ["please use the /api scope"]] }
