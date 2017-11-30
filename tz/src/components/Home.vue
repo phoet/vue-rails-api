@@ -1,7 +1,19 @@
 <template>
   <div>
+    <h1>Home</h1>
 
-    <h1 @click="toggle = !toggle">Log-In</h1>
+    <transition-group name="fade" mode="outin">
+      <form v-for="tz in timeZones" key="tz">
+        <input type="text" required name="description" v-model="tz.description" placeholder="Description">
+        {{ tz.name }}
+        {{ tz.now }}
+        <button type="button" @click.prevent="update(tz.id)">Update</button>
+        <button type="button" @click.prevent="destroy(tz.id)">Destroy</button>
+      </form>
+    </transition-group>
+
+
+    <!-- <h1 @click="toggle = !toggle">Log-In</h1>
     <transition name="fade">
       <form v-if="toggle">
         <input type="email" required name="email" v-model="email" placeholder="E-Mail">
@@ -18,7 +30,7 @@
         <input type="password" required name="password" v-model="password" placeholder="Password">
         <button type="submit" @click.prevent="signup">Sign-Up</button>
       </form>
-    </transition>
+    </transition> -->
 
   </div>
 </template>
@@ -27,32 +39,27 @@
 export default {
   data() {
     return {
-      toggle: true,
-      error: null,
-      name: '',
-      email: '',
-      password: '',
+      timeZones: [],
     };
   },
   methods: {
-    signup() {
+    update() {
+
     },
-    async login() {
-      const data = {
-        email: this.email,
-        password: this.password,
+    destroy() {
+
+    },
+  },
+  async mounted() {
+    try {
+      const headers = {
+        Authorization: this.$root.token,
       };
-
-      try {
-        const response = await this.$http.post('http://localhost:3000/api/authenticate.json', data);
-        const auth = response.body;
-        this.$root.token = auth.auth_token;
-
-        this.$router.push('/home');
-      } catch (response) {
-        this.$root.error = response.body;
-      }
-    },
+      const response = await this.$http.get('http://localhost:3000/api/time_zones.json', { headers });
+      this.timeZones = response.body;
+    } catch (e) {
+      this.error = e;
+    }
   },
 };
 </script>

@@ -13,6 +13,10 @@ Vue.use(VueResource);
 new Vue({
   el: '#app',
   router,
+  data: {
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTIxMTY0NDl9.C2b70EiW-Vd5oQRo77p8iLnCRk6Y2ZcnTQAp-dc5yZE',
+    error: null,
+  },
   template: '<App/>',
   components: { App },
 });
