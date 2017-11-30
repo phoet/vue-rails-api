@@ -31,14 +31,9 @@ export default {
     },
   },
   async mounted() {
-    try {
-      const headers = {
-        Authorization: this.$root.token,
-      };
-      const response = await this.$http.get('http://localhost:3000/api/time_zones.json', { headers });
-      this.timeZones = response.body;
-    } catch (e) {
-      this.error = e;
+    const tzs = await this.$root.get('time_zones');
+    if (tzs) {
+      this.timeZones = tzs;
     }
   },
 };

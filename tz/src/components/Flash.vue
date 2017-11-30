@@ -4,7 +4,6 @@
       <ul v-for="error in errors" key="error">
         <li>{{ message(error) }}</li>
       </ul>
-      {{ flash }}
       <a @click="hide">x</a>
     </div>
   </transition>

@@ -9,7 +9,8 @@ class ApplicationController < ActionController::API
   protected
 
   def authenticate_request
-    if auth = request.headers['Authorization']
+    auth = request.headers['Authorization']
+    if auth.present?
       self.current_user = authenticate(auth)
     end
 

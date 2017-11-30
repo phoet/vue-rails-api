@@ -12,16 +12,6 @@ export default {
   components: {
     Flash,
   },
-  computed: {
-    flash() {
-      return this.$root.error;
-    },
-  },
-  methods: {
-    hide() {
-      this.$root.error = null;
-    },
-  },
 };
 </script>
 
