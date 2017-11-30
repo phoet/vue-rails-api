@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Login from '@/components/Login';
 import Home from '@/components/Home';
 import Users from '@/components/Users';
+import TimeZones from '@/components/TimeZones';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ const router = new Router({
       path: '/users',
       name: 'Users',
       component: Users,
+    },
+    {
+      path: '/time_zones',
+      name: 'TimeZones',
+      component: TimeZones,
     },
   ],
 });

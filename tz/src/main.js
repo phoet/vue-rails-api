@@ -29,6 +29,9 @@ new Vue({
       }
       return null;
     },
+    isUser() {
+      return this.user.role === 'user';
+    },
   },
   methods: {
     async get(path) {
