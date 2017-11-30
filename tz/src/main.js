@@ -14,8 +14,23 @@ new Vue({
   el: '#app',
   router,
   data: {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTIxMTY0NDl9.C2b70EiW-Vd5oQRo77p8iLnCRk6Y2ZcnTQAp-dc5yZE',
-    error: null,
+    token: null,
+    errors: [],
+  },
+  methods: {
+    async post(path, data) {
+      try {
+        const headers = {};
+        if (this.token) {
+          headers.Authorization = this.token;
+        }
+        const response = await this.$http.post(`http://localhost:3000/api/${path}.json`, data, headers);
+        return response.body;
+      } catch (response) {
+        this.errors.push(response.body);
+      }
+      return null;
+    },
   },
   template: '<App/>',
   components: { App },

@@ -1,6 +1,9 @@
 <template>
   <transition name="fade">
-    <div v-if="flash" class="flash">
+    <div v-if="errors.length > 0" class="flash">
+      <ul v-for="error in errors" key="error">
+        <li>{{ message(error) }}</li>
+      </ul>
       {{ flash }}
       <a @click="hide">x</a>
     </div>
@@ -10,21 +13,26 @@
 <script>
 export default {
   computed: {
-    flash() {
-      if (this.$root.error) {
-        return this.$root.error.error ? this.$root.error.error : this.$root.error;
-      }
-      return null;
+    errors() {
+      return this.$root.errors;
     },
   },
   methods: {
+    message(error) {
+      return error.error ? error.error : error;
+    },
     hide() {
-      this.$root.error = null;
+      this.$root.errors = [];
     },
   },
 };
 </script>
 
 <style scoped>
-
+ul {
+  display: inline-block;
+}
+li {
+  list-style: none;
+}
 </style>

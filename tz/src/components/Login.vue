@@ -28,7 +28,6 @@ export default {
   data() {
     return {
       toggle: true,
-      error: null,
       name: '',
       email: '',
       password: '',
@@ -43,14 +42,10 @@ export default {
         password: this.password,
       };
 
-      try {
-        const response = await this.$http.post('http://localhost:3000/api/authenticate.json', data);
-        const auth = response.body;
+      const auth = await this.$root.post('authenticate', data);
+      if (auth) {
         this.$root.token = auth.auth_token;
-
         this.$router.push('/home');
-      } catch (response) {
-        this.$root.error = response.body;
       }
     },
   },

@@ -12,26 +12,6 @@
       </form>
     </transition-group>
 
-
-    <!-- <h1 @click="toggle = !toggle">Log-In</h1>
-    <transition name="fade">
-      <form v-if="toggle">
-        <input type="email" required name="email" v-model="email" placeholder="E-Mail">
-        <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit" @click.prevent="login">Log-in</button>
-      </form>
-    </transition>
-
-    <h1 @click="toggle = !toggle">Sign-Up</h1>
-    <transition name="fade">
-      <form v-if="!toggle">
-        <input type="text" required name="name" v-model="name" placeholder="Name">
-        <input type="email" required name="email" v-model="email" placeholder="E-Mail">
-        <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit" @click.prevent="signup">Sign-Up</button>
-      </form>
-    </transition> -->
-
   </div>
 </template>
 
