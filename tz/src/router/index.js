@@ -5,7 +5,7 @@ import Home from '@/components/Home';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path: '/',
@@ -19,3 +19,10 @@ export default new Router({
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  console.log(to, from);
+  next();
+});
+
+export default router;
