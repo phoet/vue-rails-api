@@ -1,13 +1,27 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <Flash />
     <router-view/>
   </div>
 </template>
 
 <script>
+import Flash from '@/components/Flash';
+
 export default {
-  name: 'app',
+  components: {
+    Flash,
+  },
+  computed: {
+    flash() {
+      return this.$root.error;
+    },
+  },
+  methods: {
+    hide() {
+      this.$root.error = null;
+    },
+  },
 };
 </script>
 
