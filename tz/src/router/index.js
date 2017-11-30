@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Login from '@/components/Login';
 import Home from '@/components/Home';
+import Users from '@/components/Users';
 
 Vue.use(Router);
 
@@ -16,6 +17,11 @@ const router = new Router({
       path: '/home',
       name: 'Home',
       component: Home,
+    },
+    {
+      path: '/users',
+      name: 'Users',
+      component: Users,
     },
   ],
 });

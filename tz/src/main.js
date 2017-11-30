@@ -17,7 +17,7 @@ new Vue({
   el: '#app',
   router,
   data: {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyIjp7ImlkIjoxLCJuYW1lIjpudWxsLCJlbWFpbCI6InBob2V0bWFpbEBnb29nbGVtYWlsLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE3LTExLTI5IDIwOjM3OjMzIFVUQyIsInVwZGF0ZWRfYXQiOiIyMDE3LTExLTI5IDIwOjM3OjMzIFVUQyIsInJvbGUiOiJhZG1pbiJ9LCJleHAiOjE1MTIxMjQ1NzF9.2gWJ73eJYRLp0oxqGugy7q-_TC8DD2hbd4meKYPzXgM',
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyIjp7ImlkIjoxLCJuYW1lIjoiUGV0ZXIiLCJlbWFpbCI6InBob2V0bWFpbEBnb29nbGVtYWlsLmNvbSIsImNyZWF0ZWRfYXQiOiIyMDE3LTExLTI5IDIwOjM3OjMzIFVUQyIsInVwZGF0ZWRfYXQiOiIyMDE3LTExLTMwIDEwOjQ3OjAwIFVUQyIsInJvbGUiOiJhZG1pbiJ9LCJleHAiOjE1MTIxMjU2Mjd9.cA9I9_3WngRg_nup3iG6pGT0X2vIyylSV4huPTgpbvk',
     errors: [],
     loading: false,
   },
@@ -43,7 +43,7 @@ new Vue({
     async delete(path) {
       return this.request('delete', path);
     },
-    async request(method, path, ...rest) {
+    async request(method, path, data) {
       this.loading = true;
       try {
         const headers = {};
@@ -51,7 +51,11 @@ new Vue({
           headers.Authorization = this.token;
         }
         const url = `http://localhost:3000/api/${path}.json`;
-        const response = await this.$http[method](url, ...rest, { headers });
+        if (method === 'get') {
+          const response = await this.$http.get(url, { headers });
+          return response.body;
+        }
+        const response = await this.$http[method](url, data, { headers });
         return response.body;
       } catch (response) {
         this.errors.push(response.body);
