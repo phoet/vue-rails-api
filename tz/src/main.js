@@ -17,6 +17,7 @@ new Vue({
     token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTIxMTk2MjJ9.SZrUZaJL9AVS-rEy_-SGPoGAnbCX3EjjHCt_i0RqUko',
     // token: null,
     errors: [],
+    loading: false,
   },
   methods: {
     async get(path) {
@@ -28,7 +29,11 @@ new Vue({
     async patch(path, data) {
       return this.request('patch', path, data);
     },
+    async delete(path) {
+      return this.request('delete', path);
+    },
     async request(method, path, ...rest) {
+      this.loading = true;
       try {
         const headers = {};
         if (this.token) {
@@ -39,6 +44,8 @@ new Vue({
         return response.body;
       } catch (response) {
         this.errors.push(response.body);
+      } finally {
+        this.loading = false;
       }
       return null;
     },

@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Flash />
+    <Spinner />
     <router-view/>
   </div>
 </template>
 
 <script>
 import Flash from '@/components/Flash';
+import Spinner from '@/components/Spinner';
 
 export default {
   components: {
     Flash,
+    Spinner,
   },
 };
 </script>
