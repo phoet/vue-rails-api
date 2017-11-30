@@ -3,7 +3,11 @@ class AuthenticationController < ApplicationController
 
   def authenticate
     if user = login(params[:email], params[:password])
-      render json: { auth_token: auth_token(user.id) }
+      payload = {
+        user_id: user.id,
+        user: user.as_json,
+      }
+      render json: { auth_token: auth_token(payload) }
     else
       render json: { error: 'credentials invalid' }, status: :unauthorized
     end

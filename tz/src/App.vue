@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    {{$root.user}}
     <Flash />
     <Spinner />
     <router-view/>

@@ -6,4 +6,8 @@ class User < ApplicationRecord
   validates_presence_of :name, :email, :role
 
   has_many :time_zones
+
+  def as_json(options = {})
+    super(options.merge(except: [:password_digest]))
+  end
 end

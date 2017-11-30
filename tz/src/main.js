@@ -17,10 +17,18 @@ new Vue({
   el: '#app',
   router,
   data: {
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1MTIxMTk2MjJ9.SZrUZaJL9AVS-rEy_-SGPoGAnbCX3EjjHCt_i0RqUko',
-    // token: null,
+    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VyIjoiIzxVc2VyOjB4MDAwMDdmODBmNDBlOWQ3OD4iLCJleHAiOjE1MTIxMjMwNTF9.OA3x8S3h7miXw83XT7FgGz0uP9c2XVJ49nZVHUVww1k',
     errors: [],
     loading: false,
+  },
+  computed: {
+    user() {
+      if (this.token) {
+        const data = window.atob(this.token.split('.')[1]);
+        return JSON.parse(data).user;
+      }
+      return null;
+    },
   },
   methods: {
     async get(path) {

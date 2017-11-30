@@ -1,6 +1,6 @@
 module Auth
-  def auth_token(user_id)
-    Token.encode(user_id: user_id)
+  def auth_token(payload)
+    Token.encode(payload)
   end
 
   def login(email, password)

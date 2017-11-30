@@ -10,7 +10,7 @@ class TimeZone < ApplicationRecord
     tz.now
   end
 
-  def as_json(options)
+  def as_json(options = {})
     super(options.merge(methods: :current_time))
   end
 end
