@@ -40,6 +40,14 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create time_zone" do
     assert_difference('TimeZone.count') do
+      post time_zones_url, params: { time_zone: { name: @time_zone.name, key: @time_zone.key } }, headers: @headers, as: :json
+    end
+
+    assert_response 201
+  end
+
+  test "should create time_zone for managed user" do
+    assert_difference('TimeZone.count') do
       post time_zones_url, params: { time_zone: { name: @time_zone.name, key: @time_zone.key, user_id: @time_zone.user_id } }, headers: @headers, as: :json
     end
 
@@ -52,6 +60,11 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update time_zone" do
+    patch time_zone_url(@time_zone), params: { time_zone: { name: @time_zone.name, key: @time_zone.key } }, headers: @headers, as: :json
+    assert_response 200
+  end
+
+  test "should update time_zone for managed user" do
     patch time_zone_url(@time_zone), params: { time_zone: { name: @time_zone.name, key: @time_zone.key, user_id: @time_zone.user_id } }, headers: @headers, as: :json
     assert_response 200
   end
@@ -59,6 +72,14 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
   test "should destroy time_zone" do
     assert_difference('TimeZone.count', -1) do
       delete time_zone_url(@time_zone), headers: @headers, as: :json
+    end
+
+    assert_response 204
+  end
+
+  test "should destroy time_zone for managed user" do
+    assert_difference('TimeZone.count', -1) do
+      delete time_zone_url(@time_zone, user_id: @time_zone.user_id), headers: @headers, as: :json
     end
 
     assert_response 204
