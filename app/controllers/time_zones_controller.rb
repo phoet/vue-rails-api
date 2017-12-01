@@ -49,6 +49,6 @@ class TimeZonesController < ApplicationController
   end
 
   def time_zone_params
-    params.require(:time_zone).permit(:name, :description)
+    params.require(:time_zone).permit(:name, :key)
   end
 end

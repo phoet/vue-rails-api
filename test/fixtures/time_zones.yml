@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: Europe/Berlin
-  description: MyText
+  key: Europe/Berlin
+  name: Noice
   user: admin
 
 london:
-  name: Europe/London
-  description: MyText
+  key: Europe/London
+  name: Whooot
   user: admin
 
 berlin:
-  name: Europe/Berlin
-  description: MyText
+  key: Europe/Berlin
+  name: Arrrr
   user: admin

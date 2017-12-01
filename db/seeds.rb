@@ -4,6 +4,5 @@ if User.none?
 end
 
 if TimeZone.none?
-  name = 'Europe/Berlin'
-  TimeZone.create!(description: 'My favorite', name: name, user: User.first)
+  TimeZone.create!(name: 'My favorite', key: 'Europe/Berlin', user: User.first)
 end

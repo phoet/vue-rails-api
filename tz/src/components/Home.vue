@@ -6,8 +6,8 @@
 
     <h3>Create</h3>
     <Form :submit="create">
-      <input type="text" required name="description" v-model="description" placeholder="Description">
-      <select required v-model="name">
+      <input type="text" required name="name" v-model="name" placeholder="Name">
+      <select required v-model="key">
         <option v-for="name in tzNames" :value="name" key="name">{{name}}</option>
       </select>
       <button type="submit">Create</button>
@@ -23,8 +23,8 @@
       <p v-if="timeZones.length === 0" key="empty">No Data</p>
       <div v-for="tz in timeZones" key="tz">
         <Form :submit="() => update(tz)">
-          <input type="text" required name="description" v-model="tz.description" placeholder="Description">
-          {{ tz.name }}
+          <input type="text" required name="name" v-model="tz.name" placeholder="Name">
+          {{ tz.key }}
           {{ tz.current_time }}
           <button type="submit">Update</button>
           <button type="button" @click.prevent="destroy(tz)">Destroy</button>
@@ -40,8 +40,8 @@ export default {
   data() {
     return {
       filter: null,
-      description: null,
       name: null,
+      key: null,
       timeZones: [],
       tzNames: [
         'Europe/Berlin',
@@ -71,8 +71,8 @@ export default {
     },
     async create() {
       const data = {
-        description: this.description,
         name: this.name,
+        key: this.key,
       };
       const created = await this.$root.post('time_zones', data);
       if (created) {
