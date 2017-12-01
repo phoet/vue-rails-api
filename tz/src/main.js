@@ -78,6 +78,10 @@ new Vue({
           const response = await this.$http.get(url, { headers, params: data });
           return response.body;
         }
+        if (method === 'delete') {
+          const response = await this.$http.delete(url, { headers });
+          return response.body;
+        }
         const response = await this.$http[method](url, data, { headers });
         return response.body;
       } catch (response) {
