@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authenticate_user_manager
 
   def index
     users = User.all
@@ -41,9 +41,9 @@ class UsersController < ApplicationController
 
   private
 
-  def authenticate_admin
-    unless self.current_user.admin?
-      render json: { error: 'User is not an admin' }, status: :unauthorized
+  def authenticate_user_manager
+    unless self.current_user.can?(:user_manager)
+      render json: { error: 'User not authorized as user-manager' }, status: :unauthorized
     end
   end
 

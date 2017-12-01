@@ -7,6 +7,10 @@ class User < ApplicationRecord
 
   has_many :time_zones
 
+  def can?(role)
+    self.class.roles[self.role] >= self.class.roles[role]
+  end
+
   def as_json(options = {})
     super(options.merge(except: [:password_digest]))
   end

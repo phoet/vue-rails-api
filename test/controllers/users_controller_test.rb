@@ -7,6 +7,22 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     login(:admin, @headers)
   end
 
+  test "should not authorize users" do
+    headers = {}
+    login(:user, headers)
+    get users_url, headers: headers, as: :json
+
+    assert_response :unauthorized
+  end
+
+  test "should authorize user_managers" do
+    headers = {}
+    login(:user_manager, headers)
+    get users_url, headers: headers, as: :json
+
+    assert_response :success
+  end
+
   test "should get index" do
     get users_url, headers: @headers, as: :json
 

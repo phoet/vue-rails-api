@@ -10,6 +10,15 @@ class TimeZonesControllerTest < ActionDispatch::IntegrationTest
     login(:admin, @headers)
   end
 
+  test "should not find other users content" do
+    headers = {}
+    login(:user, headers)
+
+    assert_raise(ActiveRecord::RecordNotFound) do
+      get time_zone_url(@time_zone), headers: headers, as: :json
+    end
+  end
+
   test "should get index" do
     get time_zones_url, headers: @headers, as: :json
 

@@ -15,3 +15,15 @@ admin:
   email: admin@toptal.com
   password_digest: $2a$10$k6LsBC5xgQ7JgI18PzvxnOinV8FQAqahfEgSlxe0MaEQNQpvQ2RkW # xxxxxxxx
   role: admin
+
+user:
+  name: User
+  email: user@toptal.com
+  password_digest: $2a$10$k6LsBC5xgQ7JgI18PzvxnOinV8FQAqahfEgSlxe0MaEQNQpvQ2RkW # xxxxxxxx
+  role: user
+
+user_manager:
+  name: User-Manager
+  email: user_manager@toptal.com
+  password_digest: $2a$10$k6LsBC5xgQ7JgI18PzvxnOinV8FQAqahfEgSlxe0MaEQNQpvQ2RkW # xxxxxxxx
+  role: user_manager

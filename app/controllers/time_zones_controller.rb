@@ -41,7 +41,11 @@ class TimeZonesController < ApplicationController
   private
 
   def user
-    managed_user || current_user
+    @user ||= if params[:user_id] && current_user.admin?
+      User.find(params[:user_id])
+    else
+      current_user
+    end
   end
 
   def time_zone_params
