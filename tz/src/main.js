@@ -20,13 +20,11 @@ new Vue({
   el: '#app',
   router,
   data: {
+    token: Vue.localStorage.get('token'),
     errors: [],
     loading: false,
   },
   computed: {
-    token() {
-      return this.$localStorage.get('token');
-    },
     user() {
       if (this.token) {
         const data = window.atob(this.token.split('.')[1]);
@@ -44,18 +42,20 @@ new Vue({
       return this.user.role === 'admin';
     },
     loggedIn() {
-      return !!this.token;
+      return !!this.user;
     },
   },
   methods: {
     readToken() {
-      return this.$localStorage.get('token');
+      return Vue.localStorage.get('token');
     },
     login(token) {
-      this.$localStorage.set('token', token);
+      this.token = token;
+      Vue.localStorage.set('token', token);
     },
     logout() {
-      this.$localStorage.remove('token');
+      this.token = null;
+      Vue.localStorage.remove('token');
     },
     async get(path, data) {
       return this.request('get', path, data);
