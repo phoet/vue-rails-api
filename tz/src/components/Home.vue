@@ -19,8 +19,10 @@
       <button type="submit">Filter</button>
       <button type="button" @click.prevent="resetList">Reset</button>
     </Form>
-    <transition-group name="fade" mode="outin">
-      <p v-if="timeZones.length === 0" key="empty">No Data</p>
+
+    <p v-if="timeZones.length === 0" key="empty">No Data</p>
+
+    <transition-group name="fade">
       <div v-for="tz in timeZones" key="tz">
         <Form :submit="() => update(tz)">
           <input type="text" required name="name" v-model="tz.name" placeholder="Name">

@@ -20,8 +20,10 @@
       </Form>
 
       <h3>List for {{userId}}</h3>
-      <transition-group name="fade" mode="outin">
-        <p v-if="timeZones.length === 0" key="empty">No Data</p>
+
+      <p v-if="timeZones.length === 0" key="empty">No Data</p>
+
+      <transition-group name="fade">
         <div v-for="tz in timeZones" key="tz">
           <Form :submit="() => update(tz)">
             {{ tz.user_id }}

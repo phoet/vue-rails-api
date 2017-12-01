@@ -13,8 +13,10 @@
     </Form>
 
     <h3>List</h3>
-    <transition-group name="fade" mode="outin">
-      <p v-if="users.length === 0" key="empty">No Data</p>
+
+    <p v-if="users.length === 0" key="empty">No Data</p>
+
+    <transition-group name="fade">
       <div v-for="user in users" key="user">
         <Form :submit="() => update(user)">
           <input type="text" required name="name" v-model="user.name" placeholder="Name">
