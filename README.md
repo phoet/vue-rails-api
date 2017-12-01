@@ -13,3 +13,28 @@ Write an application that shows time in different timezones
 * All actions need to be done client side using AJAX, refreshing the page is not acceptable.
 * Minimal UI/UX design is needed. You will not be marked on graphic design. However, do try to keep it as tidy as possible.
 * Bonus: unit and e2e tests.
+
+# INSTALLATION
+
+## RAILS
+
+```
+bin/setup
+bin/rails server
+```
+
+## VUE SPA
+
+```
+cd tz && npm install && npm run dev
+```
+
+# TESTS
+
+```
+# run rails test-suite
+bin/rake
+
+# run vue test-suite
+cd tz && npm run test
+```
