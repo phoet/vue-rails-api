@@ -14,6 +14,11 @@
     </Form>
 
     <h3>List</h3>
+    <Form :submit="filterList">
+      <input type="filter" required name="filter" v-model="filter" placeholder="Filter by Name">
+      <button type="submit">Filter</button>
+      <button type="button" @click.prevent="resetList">Reset</button>
+    </Form>
     <transition-group name="fade" mode="outin">
       <p v-if="timeZones.length === 0" key="empty">No Data</p>
       <div v-for="tz in timeZones" key="tz">
@@ -34,6 +39,7 @@
 export default {
   data() {
     return {
+      filter: null,
       description: null,
       name: null,
       timeZones: [],
@@ -44,6 +50,25 @@ export default {
     };
   },
   methods: {
+    async filterList() {
+      const params = {
+        name: this.filter,
+      };
+      const tzs = await this.$root.get('time_zones', params);
+      if (tzs) {
+        this.timeZones = tzs;
+      }
+    },
+    async resetList() {
+      this.filter = null;
+      await this.list();
+    },
+    async list() {
+      const tzs = await this.$root.get('time_zones');
+      if (tzs) {
+        this.timeZones = tzs;
+      }
+    },
     async create() {
       const data = {
         description: this.description,
@@ -69,10 +94,7 @@ export default {
     },
   },
   async mounted() {
-    const tzs = await this.$root.get('time_zones');
-    if (tzs) {
-      this.timeZones = tzs;
-    }
+    await this.list();
   },
 };
 </script>

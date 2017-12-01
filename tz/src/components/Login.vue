@@ -43,7 +43,7 @@ export default {
 
       const auth = await this.$root.post('signup', data);
       if (auth) {
-        this.$root.token = auth.auth_token;
+        this.$root.login(auth.auth_token);
         this.$router.push('/home');
       }
     },
@@ -55,7 +55,7 @@ export default {
 
       const auth = await this.$root.post('authenticate', data);
       if (auth) {
-        this.$root.token = auth.auth_token;
+        this.$root.login(auth.auth_token);
         this.$router.push('/home');
       }
     },
