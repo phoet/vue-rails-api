@@ -48,11 +48,14 @@ new Vue({
     },
   },
   methods: {
+    readToken() {
+      return this.$localStorage.get('token');
+    },
     login(token) {
       this.$localStorage.set('token', token);
     },
     logout() {
-      this.$localStorage.set('token', null);
+      this.$localStorage.remove('token');
     },
     async get(path, data) {
       return this.request('get', path, data);

@@ -34,7 +34,12 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   console.log(to, from);
-  next();
+  if (to.path === '/') {
+    next();
+  } else {
+    const token = Vue.localStorage.get('token');
+    next(token ? true : '/');
+  }
 });
 
 export default router;

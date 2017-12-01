@@ -3,6 +3,9 @@
     <ul>
       <span v-if="loggedIn">
         <li>
+          hi {{ description }}
+        </li>
+        <li>
           <a href="#" @click.prevent="logout">Log-Out</a>
         </li>
         <li>
@@ -35,6 +38,9 @@ export default {
     },
     isAdmin() {
       return this.$root.isAdmin;
+    },
+    description() {
+      return `${this.$root.user.name}  -  ${this.$root.user.role}`;
     },
   },
   methods: {
