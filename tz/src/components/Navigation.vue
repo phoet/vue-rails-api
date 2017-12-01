@@ -5,6 +5,9 @@
         <li>
           <a href="#" @click.prevent="logout">Log-Out</a>
         </li>
+        <li>
+          <a href="#" @click.prevent="home">Home</a>
+        </li>
         <li v-if="isUserManager">
           <a href="#" @click.prevent="timeZones">TimeZones</a>
         </li>
@@ -37,6 +40,9 @@ export default {
   methods: {
     login() {
       this.$router.push('/');
+    },
+    home() {
+      this.$router.push('/home');
     },
     users() {
       this.$router.push('/users');
