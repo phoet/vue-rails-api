@@ -5,7 +5,15 @@ class ApplicationController < ActionController::API
 
   attr_accessor :current_user
 
+  rescue_from ActiveRecord::RecordNotFound, with: :_404
+
   protected
+
+  def _404(exception)
+    Rails.logger.warn exception
+    Rails.logger.warn "head 404 with params #{params}"
+    head 404
+  end
 
   def authenticate_request
     auth = request.headers['Authorization']
