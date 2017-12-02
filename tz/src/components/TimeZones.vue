@@ -5,7 +5,9 @@
     <h2>All TimeZones for User</h2>
 
     <Form :submit="show" key="form">
-      <input type="text" required name="userId" v-model="userId" placeholder="User-ID">
+      <select required v-model="userId">
+        <option v-for="user in users" :value="user.id" key="user">{{user.id}} {{user.name}}</option>
+      </select>
       <button type="submit">Select</button>
     </Form>
 
@@ -48,6 +50,7 @@ export default {
       key: null,
       userId: null,
       timeZones: [],
+      users: [],
       tzNames: [
         'Europe/Berlin',
         'Europe/London',
@@ -86,6 +89,12 @@ export default {
         this.timeZones = tzs;
       }
     },
+  },
+  async mounted() {
+    const users = await this.$root.get('users');
+    if (users) {
+      this.users = users;
+    }
   },
 };
 </script>
