@@ -21,6 +21,7 @@
         <Form :submit="() => update(user)">
           <input type="text" required name="name" v-model="user.name" placeholder="Name">
           <input type="email" required name="email" v-model="user.email" placeholder="E-Mail">
+          <input type="text" required name="role" v-model="user.role" placeholder="Role">
           <button type="submit">Update</button>
           <button type="button" @click.prevent="destroy(user)">Destroy</button>
         </Form>
