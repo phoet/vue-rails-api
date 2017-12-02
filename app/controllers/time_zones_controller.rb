@@ -1,7 +1,7 @@
 class TimeZonesController < ApplicationController
   def index
     time_zones = user.time_zones
-    time_zones = time_zones.by_name(params[:name])
+    time_zones = time_zones.by_name(params[:name]) if params[:name]
 
     render json: time_zones
   end
