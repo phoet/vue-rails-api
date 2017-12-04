@@ -25,18 +25,16 @@
 
       <p v-if="timeZones.length === 0" key="empty">No Data</p>
 
-      <transition-group name="fade">
-        <div v-for="tz in timeZones" key="tz">
-          <Form :submit="() => update(tz)">
-            {{ tz.user_id }}
-            <input type="text" required name="name" v-model="tz.name" placeholder="Name">
-            {{ tz.key }}
-            {{ tz.current_time }}
-            <button type="submit">Update</button>
-            <button type="button" @click.prevent="destroy(tz)">Destroy</button>
-          </Form>
-        </div>
-      </transition-group>
+      <div v-for="tz in timeZones" key="tz">
+        <Form :submit="() => update(tz)">
+          {{ tz.user_id }}
+          <input type="text" required name="name" v-model="tz.name" placeholder="Name">
+          {{ tz.key }}
+          {{ tz.current_time }}
+          <button type="submit">Update</button>
+          <button type="button" @click.prevent="destroy(tz)">Destroy</button>
+        </Form>
+      </div>
     </div>
   </div>
 </template>
@@ -94,6 +92,10 @@ export default {
     const users = await this.$root.get('users');
     if (users) {
       this.users = users;
+    }
+    this.userId = this.$route.params.userId;
+    if (this.userId) {
+      await this.show();
     }
   },
 };

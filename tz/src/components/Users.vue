@@ -16,18 +16,17 @@
 
     <p v-if="users.length === 0" key="empty">No Data</p>
 
-    <transition-group name="fade">
-      <div v-for="user in users" key="user">
-        <Form :submit="() => update(user)">
-          {{user.id}}
-          <input type="text" required name="name" v-model="user.name" placeholder="Name">
-          <input type="email" required name="email" v-model="user.email" placeholder="E-Mail">
-          <input type="text" required name="role" v-model="user.role" placeholder="Role">
-          <button type="submit">Update</button>
-          <button type="button" @click.prevent="destroy(user)">Destroy</button>
-        </Form>
-      </div>
-    </transition-group>
+    <div v-for="user in users" key="user">
+      <Form :submit="() => update(user)">
+        {{user.id}}
+        <input type="text" required name="name" v-model="user.name" placeholder="Name">
+        <input type="email" required name="email" v-model="user.email" placeholder="E-Mail">
+        <input type="text" required name="role" v-model="user.role" placeholder="Role">
+        <button type="submit">Update</button>
+        <button type="button" @click.prevent="destroy(user)">Destroy</button>
+        <button type="button" @click.prevent="showTimeZones(user)">TimeZones</button>
+      </Form>
+    </div>
 
   </div>
 </template>
@@ -43,6 +42,9 @@ export default {
     };
   },
   methods: {
+    showTimeZones(user) {
+      this.$router.push(`/users/${user.id}/time_zones`);
+    },
     async create() {
       const data = {
         user: {

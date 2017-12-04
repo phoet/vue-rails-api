@@ -11,9 +11,6 @@
         <li>
           <a href="#" @click.prevent="home">Home</a>
         </li>
-        <li v-if="isAdmin">
-          <a href="#" @click.prevent="timeZones">TimeZones</a>
-        </li>
         <li v-if="isUserManager">
           <a href="#" @click.prevent="users">Users</a>
         </li>
