@@ -4,6 +4,7 @@ class User < ApplicationRecord
   enum role: { user: 0, user_manager: 1, admin: 2 }
 
   validates_presence_of :name, :email, :role
+  validates_uniqueness_of :email
 
   has_many :time_zones
 
