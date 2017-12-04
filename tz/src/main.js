@@ -6,14 +6,15 @@ import VueResource from 'vue-resource';
 import App from './App';
 import router from './router';
 import Form from './components/Form';
-
-
-Vue.config.productionTip = false;
+import Ticker from './components/Ticker';
 
 Vue.component('Form', Form);
+Vue.component('Ticker', Ticker);
 
 Vue.use(VueLocalStorage);
 Vue.use(VueResource);
+
+Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
