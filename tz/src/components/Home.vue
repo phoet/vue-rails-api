@@ -22,17 +22,16 @@
 
     <p v-if="timeZones.length === 0" key="empty">No Data</p>
 
-    <transition-group name="fade">
-      <div v-for="tz in timeZones" key="tz">
-        <Form :submit="() => update(tz)">
-          <input type="text" required name="name" v-model="tz.name" placeholder="Name">
-          {{ tz.key }}
-          {{ tz.current_time }}
-          <button type="submit">Update</button>
-          <button type="button" @click.prevent="destroy(tz)">Destroy</button>
-        </Form>
-      </div>
-    </transition-group>
+    <div v-for="tz in timeZones" key="tz">
+      <Form :submit="() => update(tz)">
+        {{ tz.id }}
+        <input type="text" required name="name" v-model="tz.name" placeholder="Name">
+        {{ tz.key }}
+        <Ticker :location="tz.key" />
+        <button type="submit">Update</button>
+        <button type="button" @click.prevent="destroy(tz)">Destroy</button>
+      </Form>
+    </div>
 
   </div>
 </template>

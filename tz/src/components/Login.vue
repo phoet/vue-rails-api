@@ -4,20 +4,19 @@
     <h1>
       <span @click="toggle = true">Log-In</span> / <span @click="toggle = false">Sign-Up</span>
     </h1>
-    <transition name="fade">
-      <Form :submit="login" v-if="toggle">
-        <input type="email" required name="email" v-model="email" placeholder="E-Mail">
-        <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit">Log-in</button>
-      </Form>
-      
-      <Form :submit="signup" v-else>
-        <input type="text" required name="name" v-model="name" placeholder="Name">
-        <input type="email" required name="email" v-model="email" placeholder="E-Mail">
-        <input type="password" required name="password" v-model="password" placeholder="Password">
-        <button type="submit">Sign-Up</button>
-      </Form>
-    </transition>
+
+    <Form :submit="login" v-if="toggle">
+      <input type="email" required name="email" v-model="email" placeholder="E-Mail">
+      <input type="password" required name="password" v-model="password" placeholder="Password">
+      <button type="submit">Log-in</button>
+    </Form>
+
+    <Form :submit="signup" v-else>
+      <input type="text" required name="name" v-model="name" placeholder="Name">
+      <input type="email" required name="email" v-model="email" placeholder="E-Mail">
+      <input type="password" required name="password" v-model="password" placeholder="Password">
+      <button type="submit">Sign-Up</button>
+    </Form>
 
   </div>
 </template>

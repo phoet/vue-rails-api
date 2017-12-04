@@ -1,9 +1,7 @@
 <template>
-  <transition name="fade">
-    <div v-if="loading" class="spinner">
-      ... LOADING ...
-    </div>
-  </transition>
+  <div v-if="loading" class="spinner">
+    ... LOADING ...
+  </div>
 </template>
 
 <script>
@@ -15,7 +13,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-
-</style>
